@@ -10,7 +10,7 @@ node {
 	dir("jenkins_pipeline")
     {
         script{
-            git branch: "master", 
+            git branch: "main", 
                 url: 'https://gitee.com/OpenCloudOS/jenkins_pipeline.git'            
         }
     }
