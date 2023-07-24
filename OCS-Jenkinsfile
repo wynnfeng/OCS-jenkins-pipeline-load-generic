@@ -17,6 +17,6 @@ node {
     
     // pass the environment variables to new pipeline
     withEnv(["COMMIT=${scmVars.GIT_COMMIT}","BRANCH=${scmVars.GIT_BRANCH}"]) {        
-        load 'OC-Gitee-Doc-CI-Jenkinsfile'  
+        load 'jenkinsfile-test'  
     }
 } 
