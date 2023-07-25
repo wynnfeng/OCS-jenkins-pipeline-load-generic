@@ -6,17 +6,16 @@ node {
     scmVars = checkout scm
 
     //checkout devops repository (other repository)
-    sh 'mkdir -p jenkins_pipeline'
-	dir("jenkins_pipeline")
-    {
+    withCredentials([gitUsernamePassword(credentialsId: 'ocs-bot-gitee-passwd', gitToolName: 'git-tool')]){
         script{
-            git branch: "main", 
-                url: 'https://gitee.com/OpenCloudOS/jenkins_pipeline.git'            
+            sh '''
+            git clone https://gitee.com/OpenCloudOS/jenkins_pipeline.git
+            '''
         }
     }
     
     // pass the environment variables to new pipeline
     withEnv(["COMMIT=${scmVars.GIT_COMMIT}","BRANCH=${scmVars.GIT_BRANCH}"]) {        
         load 'jenkinsfile-test'  
-    }
-} 
+}
+}
